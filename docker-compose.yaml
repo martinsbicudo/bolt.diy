@@ -7,7 +7,7 @@ services:
       target: bolt-ai-production
     ports:
       - '5173:5173'
-    env_file: 
+    env_file:
       - '.env'
       - '.env.local'
     environment:
@@ -39,7 +39,7 @@ services:
     image: bolt-ai:development
     build:
       target: bolt-ai-development
-    env_file: 
+    env_file:
       - '.env'
       - '.env.local'
     environment:
@@ -94,3 +94,6 @@ services:
     command: pnpm run dockerstart
     profiles:
       - prebuilt
+    labels:
+      - "traefik.http.middlewares.auth.basicauth.users=${BASIC_AUTH}"
+      - "traefik.http.routers.bolt.middlewares=auth"
