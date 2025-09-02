@@ -93,5 +93,5 @@ services:
     profiles:
       - prebuilt
     labels:
-      - 'traefik.http.middlewares.auth.basicauth.users=root:$2y$05$ElVf7.LEsaMdFijZrCCUVuRkcDBCnjNiPZhPYsLhjxK08gxLjD6pe'
+      - 'traefik.http.middlewares.auth.basicauth.users=usuario:$$2y$$05$$JczQTsT4USUE0M.JXYrZfONs132RSADClfDQUXWWP0o3CpjnvRTlC'
       - 'traefik.http.services.app-prebuild.loadbalancer.server.port=5173'
