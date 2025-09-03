@@ -90,8 +90,8 @@ services:
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     command: pnpm run dockerstart
-    profiles:
-      - prebuilt
+    volumes:
+      - /opt/boltauth:/boltauth:ro
     labels:
-      - 'traefik.http.middlewares.auth.basicauth.users=usuario:$$2y$$05$$JczQTsT4USUE0M.JXYrZfONs132RSADClfDQUXWWP0o3CpjnvRTlC'
+      - traefik.http.middlewares.bolt-auth.basicauth.usersfile=/boltauth
       - 'traefik.http.services.app-prebuild.loadbalancer.server.port=5173'
