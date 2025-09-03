@@ -1,4 +1,8 @@
 services:
+  traefik:
+    volumes:
+      - /opt/boltauth:/boltauth:ro
+
   app-prod:
     image: bolt-ai:production
     build:
@@ -90,8 +94,6 @@ services:
     extra_hosts:
       - 'host.docker.internal:host-gateway'
     command: pnpm run dockerstart
-    volumes:
-      - /opt/boltauth:/boltauth:ro
     labels:
-      - traefik.http.middlewares.bolt-auth.basicauth.usersfile=/boltauth
+      - traefik.http.middlewares.bolt-auth.basicauth.usersfile=/etc/traefik/boltauth
       - 'traefik.http.services.app-prebuild.loadbalancer.server.port=5173'
